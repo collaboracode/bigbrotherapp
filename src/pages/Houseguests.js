@@ -18,7 +18,7 @@ const Houseguests = () => {
 
     }
 
-    const arr = ReturnGuests({start: 0, end: 1})
+    const arr = ReturnGuests()
     const [guests, setGuests] = useState()
     !guests && setGuests(arr)
     const showGuests = () => {
