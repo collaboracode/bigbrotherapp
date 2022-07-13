@@ -11,21 +11,22 @@ import ReturnGuests from "../utility/ReturnGuestOrGuests"
 
 const Houseguests = () => {
     const navigate = useNavigate()
-    const height = '100'
+    // const height = '100'
     const width = '100%'
     const handleImageClick = (imageUrl, name) => {
         navigate('/profile', { state: { imageUrl, name } })
 
     }
 
-    const arr = ReturnGuests({end: 4 })
-    const [guests, setGuests] = useState(arr)
+    const arr = ReturnGuests({start: 0, end: 1})
+    const [guests, setGuests] = useState()
+    !guests && setGuests(arr)
     const showGuests = () => {
         return (
             guests && guests.map((guest, i) => {
                 return (
                     <Col sm="3" key={i}>
-                        <img key={i} onClick={() => {
+                        <img alt="" key={i} onClick={() => {
                             handleImageClick(guest.img, guest.name)
                         }}
                             width={width}
@@ -33,10 +34,9 @@ const Houseguests = () => {
                     </Col>
                 )
             })
-
-
         )
     }
+
     return (
         <Container>
             <h1 className="text-primary">Houseguests</h1>
@@ -55,5 +55,4 @@ const Houseguests = () => {
         </Container>
     )
 }
-
 export default Houseguests
