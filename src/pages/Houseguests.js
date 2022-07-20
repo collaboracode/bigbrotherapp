@@ -33,20 +33,37 @@ const Houseguests = () => {
 
     const renderGuests = () => {
         if (guests.length) {
-            return guests.map((v, i) => {
-                let rows;
+            const guestDisplay = [];
+            let cols = [];
 
-                if ((v.id - 1) % 4 === 0) {
-                    
+            const _createRow = (cols, key) => <Row key={ key }>{ cols }</Row>;
+
+            for (let i = 0; i < guests.length; i++) {
+                let col = (
+                    <Col sm='3' key={ guests[i].id }>
+                        <img onClick={() => handleImageClick(guests[i].id)} width={ width } src={ guests[i].image_url } />
+                    </Col>
+                );
+                cols.push(col);
+
+                if (i !== 0 && (i + 1) % 4 === 0) {
+                    let row = _createRow(cols, `${i}-${guests[i].id}`);
+                    guestDisplay.push(row);
+                    cols = [];
                 }
-            });
+            }
+
+            return guestDisplay;
         }
     }
 
     return (
         <Container>
             <h1 className="text-primary">Houseguests</h1>
-            <Row>
+
+            { renderGuests() }
+
+            {/* <Row>
                 <Col sm='3'>
                     <img onClick={() => handleImageClick('https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Paloma-On-BB24.jpg?resize=773.5%2C435&ssl=1', 'Paloma')} width={width} src="https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Paloma-On-BB24.jpg?resize=773.5%2C435&ssl=1"></img>
                 </Col>
@@ -59,7 +76,7 @@ const Houseguests = () => {
                 <Col sm='3'>
                     <img onClick={() => handleImageClick("https://www.usmagazine.com/wp-content/uploads/2022/07/Big-Brother-24-Cast-Revealed-Meet-16-New-Houseguests-0015.jpg?quality=86&strip=all", 'Denise')} width={width} src="https://www.usmagazine.com/wp-content/uploads/2022/07/Big-Brother-24-Cast-Revealed-Meet-16-New-Houseguests-0015.jpg?quality=86&strip=all"></img>
                 </Col>
-            </Row>
+            </Row> */}
             {/* <Row>
                 <Col sm='3'>
                     <img width={width} src="https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Paloma-On-BB24.jpg?resize=773.5%2C435&ssl=1"></img>
