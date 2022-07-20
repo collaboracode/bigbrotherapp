@@ -26,8 +26,6 @@ const Profile = (props) => {
             break;
     }
 
-    console.log(location.state)
-
     return (
         <div>
             Profile
