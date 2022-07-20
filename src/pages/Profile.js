@@ -7,12 +7,12 @@ const Profile = (props) => {
     let location = useLocation();
     const { id } = location.state
     const [guest, setGuest] = useState()
-    
+    console.log(guest)
     // empty dependency array so that it runs once
     useEffect(() => {
         ReturnGuests({ id: id })
             .then(arrayOfGuests => {
-                setGuest(arrayOfGuests)
+                setGuest(arrayOfGuests[0])
             })
     }, [])
 

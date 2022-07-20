@@ -2,40 +2,40 @@
   funtionality in here will change, but the return format should 
   remain consistant
 */
-// const baseRoute = "http://localhost:3001/"
+const baseRoute = "http://localhost:3001/"
 
 // this simulates api call delay with test json
-const jsonData = require("./guests.json")
-const getData = (data) =>
-  new Promise((resolve, reject) => {
-    if (!data) {
-      return setTimeout(
-        () => reject(new Error('Users not found')),
-        250
-      );
-    }
-    setTimeout(() => resolve(Object.values(data)), 1000);
-  });
-
-
-// const getData = (baseUrl, route = "") =>
-//   fetch(`${baseUrl}${route}`, {
-//     "method": "GET",
-//     "headers": {
-//       "Content-Type": "application/json"
+// const jsonData = require("./guests.json")
+// const getData = (data) =>
+//   new Promise((resolve, reject) => {
+//     if (!data) {
+//       return setTimeout(
+//         () => reject(new Error('Users not found')),
+//         250
+//       );
 //     }
-//   })
-//     .then(
-//       response => response.json()
-//     )
-//     .then(
-//       data => {
-//         return data
-//       }
-//     )
-//     .catch(err => {
-//       console.error(err)
-//     })
+//     setTimeout(() => resolve(Object.values(data)), 1000);
+//   });
+
+
+const getData = (baseUrl, route = "") =>
+  fetch(`${baseUrl}${route}`, {
+    "method": "GET",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(
+      response => response.json()
+    )
+    .then(
+      data => {
+        return data
+      }
+    )
+    .catch(err => {
+      console.error(err)
+    })
 
 /**
  * @param {object} obj **optional**
@@ -52,16 +52,16 @@ export default async function ReturnGuests(obj = {
 }) {
   try {
 
-    const result = await getData(jsonData) // for local json
-    // const result = await getData(baseRoute) // for api
+    // const result = await getData(jsonData) // for local json
+    const result = await getData(baseRoute) // for api
 
     if (obj?.id && result) {
 
-      const filteredData = result.filter(guest => guest.id === obj.id) // for local json
-      // const returnOne = await getData(baseRoute, `house_guests/${obj.id}`) // for api
+      // const filteredData = result.filter(guest => guest.id === obj.id) // for local json
+      const returnOne = await getData(baseRoute, `house_guests/${obj.id}`) // for api
 
-      return filteredData // for local json
-      // return returnOne // for api
+      // return filteredData // for local json
+      return returnOne // for api
 
     }
     else if (!obj.id && result) {
