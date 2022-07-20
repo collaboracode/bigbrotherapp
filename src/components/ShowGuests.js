@@ -2,9 +2,11 @@ import {
   Col,
   Row,
 } from 'reactstrap'
+
 const ShowGuests = (props) => {
   const height = '100%'
   const width = '100%'
+  const colWidth = props.colWidth ? props.colWidth : 3
   if (props.guests?.length) {
     return (
       <Row>
@@ -12,13 +14,15 @@ const ShowGuests = (props) => {
           props.start ? props.start : 0,
           props.end ? props.end + 1 : props.guests.length).map((guest, i) => {
             return (
-              <Col sm="3" key={i}>
-                <img alt={`${guest.name} from big brother`} key={i} onClick={() => {
-                  props.handleImageClick(guest.id)
-                }}
+              <Col className="column" sm={colWidth} key={i}>
+                <img
+                  onClick={() => {
+                    props.handleImageClick(guest.id)
+                  }}
+                  alt={`${guest.first_name} from big brother`}
                   width={width}
                   height={height}
-                  src={guest.imgUrl}></img>
+                  src={guest.image_url}></img>
               </Col>
             )
           })
@@ -28,14 +32,14 @@ const ShowGuests = (props) => {
   }
   else if (props.guests && !props.guests.length) {
     return (
-      <Row>
-        <Col sm="3" key={"only one"}>
-          <img alt={`${props.guests.name} from big brother`} key={'only one'} onClick={() => {
+      <Row key={"row"}>
+        <Col className="column" sm={colWidth}>
+          <img alt={`${props.guests.first_name} from big brother`} onClick={() => {
             props.handleImageClick(props.guests.id)
           }}
             width={width}
             height={height}
-            src={props.guests.imgUrl}></img>
+            src={props.guests.image_url}></img>
         </Col>
       </Row>
     )

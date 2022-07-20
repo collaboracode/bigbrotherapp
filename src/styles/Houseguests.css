@@ -7,8 +7,8 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    margin-bottom: 40px;
 }
-.col-sm-3 {
-    margin: 0;
+.column {
     width: 100%;
 }
