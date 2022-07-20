@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useLocation } from 'react-router-dom';
 
-import ReturnGuests from "../utility/ReturnGuestOrGuests"
+import ReturnGuests from "../utilities/ReturnGuestOrGuests"
 
 const Profile = (props) => {
     let location = useLocation();
@@ -14,8 +14,8 @@ const Profile = (props) => {
             .then(arrayOfGuests => {
                 setGuest(arrayOfGuests)
             })
-    }, [])
-
+        }, [])
+        // console.log(guest)
     if (guest) {
         return (
             <div>
