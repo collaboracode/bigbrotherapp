@@ -1,41 +1,31 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { useLocation } from 'react-router-dom';
 
+import ReturnGuests from "../utility/ReturnGuestOrGuests"
+
 const Profile = (props) => {
-
     let location = useLocation();
-    const { imageUrl, name } = location.state
-
-    let bio 
-
-    switch (name.toLowerCase()) {
-        case 'paloma':
-            bio = "on the block"
-            break;
-        case 'michael':
-            bio = "backstage pass"
-            break;
-        case 'denise':
-            bio = "backstage boss"
-            break;
-        case 'joseph':
-            bio = "on the block"
-            break;
+    const { id } = location.state
+    const [guest, setGuest] = useState()
     
-        default:
-            break;
+    // empty dependency array so that it runs once
+    useEffect(() => {
+        ReturnGuests({ id: id })
+            .then(arrayOfGuests => {
+                setGuest(arrayOfGuests)
+            })
+    }, [])
+
+    if (guest) {
+        return (
+            <div>
+                <h3>profile</h3>
+                <img alt={`${guest.name} from big brother`} src={guest.imgUrl}></img>
+                <h2>{guest.name}</h2>
+                <p>{guest.bio}</p>
+            </div>
+        )
     }
-
-    console.log(location.state)
-
-    return (
-        <div>
-            Profile
-            <img src={imageUrl}></img>
-            <h2>{name}</h2>
-            <p>{bio}</p>
-        </div>
-    )
 }
 
 export default Profile

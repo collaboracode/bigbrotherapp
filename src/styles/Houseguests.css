@@ -1,4 +1,14 @@
-img {
-    min-height: 100px;
-    gap: 10px;
+/* img {
+    width: 100%;
+} */
+
+/* fized jaggyness for the pictures, and got the gap to look right */
+.guestsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.col-sm-3 {
+    margin: 0;
+    width: 100%;
 }
