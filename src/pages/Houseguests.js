@@ -33,14 +33,7 @@ const Houseguests = () => {
             <h1 className="text-primary">Houseguests</h1>
             {/* not sure if this is wanted, but it could be good to have */}
             {!guests && <p>loading...</p>}
-            <MakeRowsOfGuests
-                handleImageClick={handleImageClick}
-                guests={guests}
-                // max elements in row
-                rowLength={4}
-                // col fr of 12
-                colWidth={3}
-            />
+            <MakeRowsOfGuests handleImageClick={handleImageClick} guests={guests} />
         </Container>
     )
 }

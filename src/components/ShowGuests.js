@@ -10,9 +10,7 @@ const ShowGuests = (props) => {
   if (props.guests?.length) {
     return (
       <Row>
-        {props.guests.slice(
-          props.start ? props.start : 0,
-          props.end ? props.end + 1 : props.guests.length).map((guest, i) => {
+        {props.guests.map((guest, i) => {
             return (
               <Col className="column" sm={colWidth} key={i}>
                 <img
@@ -34,9 +32,11 @@ const ShowGuests = (props) => {
     return (
       <Row key={"row"}>
         <Col className="column" sm={colWidth}>
-          <img alt={`${props.guests.first_name} from big brother`} onClick={() => {
-            props.handleImageClick(props.guests.id)
-          }}
+          <img
+            alt={`${props.guests.first_name} from big brother`}
+            onClick={() => {
+              props.handleImageClick(props.guests.id)
+            }}
             width={width}
             height={height}
             src={props.guests.image_url}></img>
