@@ -27,7 +27,7 @@ const Houseguests = () => {
     const handleImageClick = (id) => {
         navigate('/profile', { state: { id } })
     }
-
+    console.log(guests)
     return (
         <Container className="guestsContainer">
             <h1 className="text-primary">Houseguests</h1>

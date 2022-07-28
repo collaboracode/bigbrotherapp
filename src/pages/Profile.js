@@ -3,8 +3,6 @@ import { useLocation } from 'react-router-dom';
 
 import guestService from '../services/GuestService'
 
-import ShowGuests from "../components/ShowGuests";
-
 const Profile = (props) => {
     let location = useLocation();
     const { id } = location.state
@@ -25,16 +23,7 @@ const Profile = (props) => {
     if (guest) {
 
         return (
-            // <ShowGuests
-            //     // handleImageClick={handleImageClick}
-            //     guests={props.guest}
-            //     // max elements in row
-            //     rowLength={4}
-            //     // col fr of 12
-            //     colWidth={3}
-            // />
-
-            <div key={"key"}>
+            <div>
                 <h3>profile</h3>
                 <img alt={`${guest.first_name} from big brother`} src={guest.image_url}></img>
                 <h2>{guest.first_name}</h2>

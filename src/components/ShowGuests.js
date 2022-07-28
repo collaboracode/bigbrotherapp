@@ -13,11 +13,20 @@ const ShowGuests = (props) => {
         {props.guests.slice(
           props.start ? props.start : 0,
           props.end ? props.end + 1 : props.guests.length).map((guest, i) => {
+
+            // mongodb uses an underscore for the id,
+            // so I added this so we can be a little more flexible 
+            let id
+            if(guest?.id){
+              id = guest.id
+            } else if (guest?._id) {
+              id = guest._id
+            }
             return (
               <Col className="column" sm={colWidth} key={i}>
                 <img
                   onClick={() => {
-                    props.handleImageClick(guest.id)
+                    props.handleImageClick(id)
                   }}
                   alt={`${guest.first_name} from big brother`}
                   width={width}
