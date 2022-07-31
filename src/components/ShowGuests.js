@@ -17,13 +17,17 @@ const ShowGuests = (props) => {
             // mongodb uses an underscore for the id,
             // so I added this so we can be a little more flexible 
             let id
-            if(guest?.id){
+            if (guest?.id) {
               id = guest.id
             } else if (guest?._id) {
               id = guest._id
             }
             return (
-              <Col className="column" sm={colWidth} key={i}>
+              <Col
+                className="column"
+                md={colWidth}
+                key={i}
+              >
                 <img
                   onClick={() => {
                     props.handleImageClick(id)

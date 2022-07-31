@@ -1,14 +1,19 @@
-/* img {
-    width: 100%;
-} */
-
-/* fized jaggyness for the pictures, and got the gap to look right */
 .guestsContainer{
     display: flex;
     flex-direction: column;
-    gap: 20px;
     margin-bottom: 40px;
 }
 .column {
     width: 100%;
+    margin: 1.5rem 0;
+}
+
+.row {
+    margin-bottom: 0;
+}
+
+.voteButtonDiv {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
