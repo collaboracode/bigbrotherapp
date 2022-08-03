@@ -13,6 +13,7 @@ import Users from './pages/Users'
 import Houseguests from './pages/Houseguests'
 import Profile from './pages/Profile';
 import Footer from './components/Footer';
+import GuestEditor from './pages/GuestEditor';
 
 export default function App() {
 
@@ -49,11 +50,14 @@ export default function App() {
             <Route path="/" element={<Home />} />
 
 
-            <Route path="/houseguests" element={<Houseguests />} />
+            <Route exact path="/houseguests" element={<Houseguests />} />
 
 
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/houseguests/:id" element={<Profile />} />
 
+
+            <Route path="/houseguest_editor" element={<GuestEditor />} />
+            <Route path="/houseguest_editor/:id" element={<GuestEditor />} />
 
           </Routes>
         </div>

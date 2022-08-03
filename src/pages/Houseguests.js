@@ -20,7 +20,7 @@ const Houseguests = () => {
     }
 
     const handleImageClick = (id) => {
-        navigate('/profile', { state: { id } })
+        navigate(`/houseguests/${id}`)
     }
     return (
         <Container className="guestsContainer">

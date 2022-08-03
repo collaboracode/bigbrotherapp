@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import {
     AccordionItem,
@@ -10,12 +10,12 @@ import {
     CardTitle,
     Button,
 } from 'reactstrap'
+import { TiPencil } from 'react-icons/ti';
 
 import guestService from '../services/GuestService'
 
 const Profile = () => {
-    let location = useLocation();
-    const { id } = location.state
+    const { id } = useParams()
     const [guest, setGuest] = useState()
 
     // empty dependency array so that it runs once
@@ -67,6 +67,11 @@ const Profile = () => {
                         </Button>
                         <Button color="danger">
                             vote down
+                        </Button>
+                    </div>
+                    <div>
+                        <Button>
+                            <TiPencil />
                         </Button>
                     </div>
                 </Card>
