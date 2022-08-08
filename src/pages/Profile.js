@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
+import "../styles/profile.css"
+
+import { TiPencil } from 'react-icons/ti';
 import {
     AccordionItem,
     AccordionBody,
@@ -10,7 +13,6 @@ import {
     CardTitle,
     Button,
 } from 'reactstrap'
-import { TiPencil } from 'react-icons/ti';
 
 import guestService from '../services/GuestService'
 
@@ -18,33 +20,30 @@ const Profile = () => {
     const { id } = useParams()
     const [guest, setGuest] = useState()
 
-    // empty dependency array so that it runs once
     useEffect(() => {
         getGuest(id).then(
             data => setGuest(data)
         )
     }, [id])
+
     const getGuest = async (id) => {
         const data = await guestService.getGuest(id)
         if (data) {
             return data
         }
     }
+
     if (guest) {
         return (
             <>
-                <Card
-                    style={{
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        // width: '80%',
-                        width: 'clamp(250px, 60%, 90%)',
-                        padding: "2rem 1rem",
-                        border: "none", // not sure if we want the border look here
-                    }}
-                >
+                <Card className="border-0 mx-auto px-3 py-4">
                     <CardTitle tag="h5">
                         {guest.first_name}
+
+                        {/* //todo add conditional logic so that only admins see this */}
+                        <Link to={`/houseguest_editor/${id}`}>
+                            <TiPencil />
+                        </Link>
                     </CardTitle>
 
                     <img alt={`${guest.first_name} from big brother`} src={guest.image_url}></img>
@@ -58,20 +57,12 @@ const Profile = () => {
                             </AccordionBody>
                         </AccordionItem>
                     </UncontrolledAccordion>
-                    <p style={{ width: "100%", textAlign: "center" }}>
-                        does not do anything yet
-                    </p>
-                    <div className={"voteButtonDiv"}>
+                    <div className={"d-flex gap-3 justify-content-center mt-3"}>
                         <Button color="success">
                             vote up
                         </Button>
                         <Button color="danger">
                             vote down
-                        </Button>
-                    </div>
-                    <div>
-                        <Button>
-                            <TiPencil />
                         </Button>
                     </div>
                 </Card>

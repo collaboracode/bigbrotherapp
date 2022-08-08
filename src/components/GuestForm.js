@@ -7,118 +7,80 @@ import {
   FormText,
   Button
 } from 'reactstrap'
+
 const GuestForm = (props) => {
-  const { guestData, handleChange } = props
+  const { guestData, handleChange, handleSubmit, id } = props
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <FormGroup row>
         <Label
-          for="exampleEmail"
+          for="firstName"
           sm={2}
         >
-          Email
+          First Name
         </Label>
         <Col sm={10}>
           <Input
-            id="exampleEmail"
-            name="email"
-            placeholder="with a placeholder"
-            type="email"
+            id="firstName"
+            name="firstName"
+            placeholder="John"
+            value={guestData?.first_name ? guestData.first_name : ""}
+            type="text"
             onChange={handleChange}
           />
         </Col>
       </FormGroup>
       <FormGroup row>
         <Label
-          for="examplePassword"
+          for="lastName"
           sm={2}
         >
-          Password
+          Last Name
         </Label>
         <Col sm={10}>
           <Input
-            id="examplePassword"
-            name="password"
-            placeholder="password placeholder"
-            type="password"
+            id="lastName"
+            name="lastName"
+            placeholder="Smith"
+            value={guestData?.last_name ? guestData.last_name : ""}
+            type="text"
+            onChange={handleChange}
           />
         </Col>
       </FormGroup>
       <FormGroup row>
         <Label
-          for="exampleSelect"
+          for="bio"
           sm={2}
         >
-          Select
+          Bio
         </Label>
         <Col sm={10}>
           <Input
-            id="exampleSelect"
-            name="select"
-            type="select"
-          >
-            <option>
-              1
-            </option>
-            <option>
-              2
-            </option>
-            <option>
-              3
-            </option>
-            <option>
-              4
-            </option>
-            <option>
-              5
-            </option>
-          </Input>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label
-          for="exampleSelectMulti"
-          sm={2}
-        >
-          Select Multiple
-        </Label>
-        <Col sm={10}>
-          <Input
-            id="exampleSelectMulti"
-            multiple
-            name="selectMulti"
-            type="select"
-          >
-            <option>
-              1
-            </option>
-            <option>
-              2
-            </option>
-            <option>
-              3
-            </option>
-            <option>
-              4
-            </option>
-            <option>
-              5
-            </option>
-          </Input>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label
-          for="exampleText"
-          sm={2}
-        >
-          Text Area
-        </Label>
-        <Col sm={10}>
-          <Input
-            id="exampleText"
-            name="text"
+            id="bio"
+            name="bio"
             type="textarea"
+            placeholder="About John"
+            value={guestData?.bio ? guestData.bio : ""}
+            onChange={handleChange}
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup row>
+        <Label
+          for="image_url"
+          sm={2}
+        >
+          image url
+        </Label>
+        <Col sm={10}>
+          <Input
+            id="image_url"
+            name="image_url"
+            placeholder="www.example.com/image_url"
+            value={guestData?.image_url ? guestData.image_url : ""}
+            type="text"
+            onChange={handleChange}
           />
         </Col>
       </FormGroup>
@@ -127,7 +89,7 @@ const GuestForm = (props) => {
           for="exampleFile"
           sm={2}
         >
-          File
+          Picture
         </Label>
         <Col sm={10}>
           <Input
@@ -140,56 +102,12 @@ const GuestForm = (props) => {
           </FormText>
         </Col>
       </FormGroup>
-      <FormGroup
-        row
-        tag="fieldset"
-      >
-        <legend className="col-form-label col-sm-2">
-          Radio Buttons
-        </legend>
-        <Col sm={10}>
-          <FormGroup check>
-            <Input
-              name="radio2"
-              type="radio"
-            />
-            {' '}
-            <Label check>
-              Option one is this and that—be sure to include why it's great
-            </Label>
-          </FormGroup>
-          <FormGroup check>
-            <Input
-              name="radio2"
-              type="radio"
-            />
-            {' '}
-            <Label check>
-              Option two can be something else and selecting it will deselect option one
-            </Label>
-          </FormGroup>
-          <FormGroup
-            check
-            disabled
-          >
-            <Input
-              disabled
-              name="radio2"
-              type="radio"
-            />
-            {' '}
-            <Label check>
-              Option three is disabled
-            </Label>
-          </FormGroup>
-        </Col>
-      </FormGroup>
       <FormGroup row>
         <Label
-          for="checkbox2"
+          for="checkbox"
           sm={2}
         >
-          Checkbox
+          isActive?
         </Label>
         <Col
           sm={{
@@ -198,8 +116,11 @@ const GuestForm = (props) => {
         >
           <FormGroup check>
             <Input
-              id="checkbox2"
+              id="checkbox"
               type="checkbox"
+              name="isActive"
+              onChange={handleChange}
+              checked={guestData?.active ? guestData.active : null}
             />
             {' '}
             <Label check>
@@ -220,7 +141,17 @@ const GuestForm = (props) => {
         >
           <Button>
             Submit
+
+            {/* //todo add conditional rendering so that it only shows for admins */}
           </Button>
+          {id && <Button // ? should this also check for guestData._id ?
+            color='danger mx-4'
+            name='deleteGuest'
+            onClick={handleChange}
+          >
+            Delete
+          </Button>}
+
         </Col>
       </FormGroup>
     </Form>

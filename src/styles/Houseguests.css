@@ -11,9 +11,3 @@
 .row {
     margin-bottom: 0;
 }
-
-.voteButtonDiv {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}

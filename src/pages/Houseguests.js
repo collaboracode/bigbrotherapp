@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
+import { useNavigate, Link } from "react-router-dom"
+
 import { Container } from 'reactstrap'
-import { useNavigate } from "react-router-dom"
+import { GrAddCircle } from 'react-icons/gr'
 
 import guestService from '../services/GuestService'
+import MakeRowsOfGuests from "../components/MakeRowsOfGuests"
 
 import '../styles/Houseguests.css'
-import MakeRowsOfGuests from "../components/MakeRowsOfGuests"
 
 const Houseguests = () => {
     const navigate = useNavigate()
@@ -24,9 +26,14 @@ const Houseguests = () => {
     }
     return (
         <Container className="guestsContainer">
-            <h1 className="text-primary">Houseguests</h1>
-            {/* not sure if this is wanted, but it could be good to have */}
-            {/* {!guests && <p>loading...</p>} */}
+            <div className="d-flex">
+                <h1 className="text-primary">Houseguests</h1>
+
+                {/* //todo add conditional so that it only shows for admins */}
+                <Link className="mt-2" to={`/houseguest_editor`}>
+                    <GrAddCircle />
+                </Link>
+            </div>
             <MakeRowsOfGuests
                 handleImageClick={handleImageClick}
                 guests={guests}
