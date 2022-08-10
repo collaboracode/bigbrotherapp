@@ -84,7 +84,7 @@ const GuestForm = (props) => {
           />
         </Col>
       </FormGroup>
-      <FormGroup row>
+      {/* <FormGroup row>
         <Label
           for="exampleFile"
           sm={2}
@@ -101,7 +101,7 @@ const GuestForm = (props) => {
             This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.
           </FormText>
         </Col>
-      </FormGroup>
+      </FormGroup> */}
       <FormGroup row>
         <Label
           for="checkbox"

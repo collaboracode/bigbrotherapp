@@ -46,7 +46,7 @@ const Profile = () => {
                         </Link>
                     </CardTitle>
 
-                    <img alt={`${guest.first_name} from big brother`} src={guest.image_url}></img>
+                    <img className={guest.active ? '' : 'evicted'} alt={`${guest.first_name} from big brother`} src={guest.image_url}></img>
                     <UncontrolledAccordion stayOpen>
                         <AccordionItem>
                             <AccordionHeader targetId="1">
