@@ -1,3 +1,14 @@
+# Todos
+## do these
+- get all correct guest data
+- update form
+- create form
+- link pencil to edit form
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

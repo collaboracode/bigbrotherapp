@@ -1,4 +1,13 @@
-img {
-    min-height: 100px;
-    gap: 10px;
+.guestsContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+.column {
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+.row {
+    margin-bottom: 0;
 }

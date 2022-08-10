@@ -1,86 +1,48 @@
-import React from "react";
-import {
-    Col,
-    Row,
-    Container,
-} from 'reactstrap'
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import { useNavigate, Link } from "react-router-dom"
+
+import { Container } from 'reactstrap'
+import { GrAddCircle } from 'react-icons/gr'
+
+import guestService from '../services/GuestService'
+import MakeRowsOfGuests from "../components/MakeRowsOfGuests"
+
 import '../styles/Houseguests.css'
 
 const Houseguests = () => {
-
     const navigate = useNavigate()
+    const [guests, setGuests] = useState()
 
-    const height = '100'
-    const width = '100%'
-
-    const handleImageClick = (imageUrl, name) => {
-        navigate('/profile', { state: { imageUrl, name } })
-
+    useEffect(() => {
+        getGuests()
+    }, [])
+    const getGuests = async () => {
+        const data = await guestService.getGuests()
+        if (data?.length) setGuests(data)
     }
 
+    const handleImageClick = (id) => {
+        navigate(`/houseguests/${id}`)
+    }
     return (
-        <Container>
-            <h1 className="text-primary">Houseguests</h1>
-            <Row>
-                <Col sm='3'>
-                    <img onClick={() => handleImageClick('https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Paloma-On-BB24.jpg?resize=773.5%2C435&ssl=1', 'Paloma')} width={width} src="https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Paloma-On-BB24.jpg?resize=773.5%2C435&ssl=1"></img>
-                </Col>
-                <Col sm='3'>
-                    <img onClick={() => handleImageClick("https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Michael-On-BB24.jpg?resize=773.5%2C435&ssl=1", 'Michael')} width={width} src="https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Michael-On-BB24.jpg?resize=773.5%2C435&ssl=1"></img>
-                </Col>
-                <Col sm='3'>
-                    <img onClick={() => handleImageClick("https://www.readersfusion.com/wp-content/uploads/2022/07/Joseph-Abdin-BB24-contestant-1024x537.jpg", 'Joseph')} width={width} src="https://www.readersfusion.com/wp-content/uploads/2022/07/Joseph-Abdin-BB24-contestant-1024x537.jpg"></img>
-                </Col>
-                <Col sm='3'>
-                    <img onClick={() => handleImageClick("https://www.usmagazine.com/wp-content/uploads/2022/07/Big-Brother-24-Cast-Revealed-Meet-16-New-Houseguests-0015.jpg?quality=86&strip=all", 'Denise')} width={width} src="https://www.usmagazine.com/wp-content/uploads/2022/07/Big-Brother-24-Cast-Revealed-Meet-16-New-Houseguests-0015.jpg?quality=86&strip=all"></img>
-                </Col>
-            </Row>
-            <Row>
-                <Col sm='3'>
-                    <img width={width} src="https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Paloma-On-BB24.jpg?resize=773.5%2C435&ssl=1"></img>
-                </Col>
-                <Col sm='3'>
-                    <img width={width} src="https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Michael-On-BB24.jpg?resize=773.5%2C435&ssl=1"></img>
-                </Col>
-                <Col sm='3'>
-                    <img width={width} src="https://www.readersfusion.com/wp-content/uploads/2022/07/Joseph-Abdin-BB24-contestant-1024x537.jpg"></img>
-                </Col>
-                <Col sm='3'>
-                    <img width={width} src="https://www.usmagazine.com/wp-content/uploads/2022/07/Big-Brother-24-Cast-Revealed-Meet-16-New-Houseguests-0015.jpg?quality=86&strip=all"></img>
-                </Col>
-            </Row>
-            <Row>
-                <Col sm='3'>
-                    <img width={width} src="https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Paloma-On-BB24.jpg?resize=773.5%2C435&ssl=1"></img>
-                </Col>
-                <Col sm='3'>
-                    <img width={width} src="https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Michael-On-BB24.jpg?resize=773.5%2C435&ssl=1"></img>
-                </Col>
-                <Col sm='3'>
-                    <img width={width} src="https://www.readersfusion.com/wp-content/uploads/2022/07/Joseph-Abdin-BB24-contestant-1024x537.jpg"></img>
-                </Col>
-                <Col sm='3'>
-                    <img width={width} src="https://www.usmagazine.com/wp-content/uploads/2022/07/Big-Brother-24-Cast-Revealed-Meet-16-New-Houseguests-0015.jpg?quality=86&strip=all"></img>
-                </Col>
-            </Row>
-            <Row>
-                <Col sm='3'>
-                    <img width={width} src="https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Paloma-On-BB24.jpg?resize=773.5%2C435&ssl=1"></img>
-                </Col>
-                <Col sm='3'>
-                    <img width={width} src="https://i0.wp.com/www.monstersandcritics.com/wp-content/uploads/2022/07/Michael-On-BB24.jpg?resize=773.5%2C435&ssl=1"></img>
-                </Col>
-                <Col sm='3'>
-                    <img width={width} src="https://www.readersfusion.com/wp-content/uploads/2022/07/Joseph-Abdin-BB24-contestant-1024x537.jpg"></img>
-                </Col>
-                <Col sm='3'>
-                    <img width={width} src="https://www.usmagazine.com/wp-content/uploads/2022/07/Big-Brother-24-Cast-Revealed-Meet-16-New-Houseguests-0015.jpg?quality=86&strip=all"></img>
-                </Col>
-            </Row>
+        <Container className="guestsContainer">
+            <div className="d-flex">
+                <h1 className="text-primary">Houseguests</h1>
 
+                {/* //todo add conditional so that it only shows for admins */}
+                <Link className="mt-2" to={`/houseguest_editor`}>
+                    <GrAddCircle />
+                </Link>
+            </div>
+            <MakeRowsOfGuests
+                handleImageClick={handleImageClick}
+                guests={guests}
+                // max elements in row
+                rowLength={4}
+                // col fr of 12
+                colWidth={3}
+            />
         </Container>
     )
 }
-
 export default Houseguests
