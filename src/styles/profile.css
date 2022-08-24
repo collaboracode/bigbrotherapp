@@ -1,11 +1,7 @@
 .card {
-<<<<<<< HEAD
   width: clamp(250px, 30%, 90%);
-=======
-  width: clamp(250px, 60%, 90%);
 }
 .evicted {
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
->>>>>>> fa40ca58a7b90bb294131d73a517fc056724f63f
 }

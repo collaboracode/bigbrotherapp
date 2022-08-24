@@ -5,7 +5,7 @@ const About = () => {
         <div className="container d-flex justify-content-center">
             <div className="mt-5">
 
-                <h1 className="mt-5 mb-5">Welcome to our app 😁</h1>
+                <h1 className="mt-5 mb-5">Welcome to our site 😁</h1>
                 <h2 className="mb-5">Here 👇 are some of the things you can do here</h2>
                 <ul>
                     <li><h4>Case your own vote 👍👎</h4></li>
