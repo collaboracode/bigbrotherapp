@@ -29,6 +29,7 @@ const ShowGuests = (props) => {
                 key={i}
               >
                 <img
+                  className={guest.active ? '' : 'evicted'}
                   onClick={() => {
                     props.handleImageClick(id)
                   }}
