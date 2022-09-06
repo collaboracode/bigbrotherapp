@@ -16,7 +16,7 @@ import {
 
 import guestService from '../services/GuestService'
 
-const Profile = () => {
+const GuestProfile = () => {
     const { id } = useParams()
     const [guest, setGuest] = useState()
 
@@ -70,4 +70,4 @@ const Profile = () => {
         )
     }
 }
-export default Profile
+export default GuestProfile
